@@ -1,11 +1,9 @@
-# www.srmosi-vdp.in
 # SRM OSI Backend
 
 ## Setup Instructions
 
-1. Run `npm install` in the backend folder to install dependencies.
-2. Ensure your MySQL server is running and create the database and table with:
-
+1. Run `npm install` to install dependencies.
+2. Ensure your MySQL server is running and create the database and table using the following SQL:
    ```sql
    CREATE DATABASE srm_osi;
    USE srm_osi;
