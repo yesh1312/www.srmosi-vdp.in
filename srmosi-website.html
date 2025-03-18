@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SRM OSI Student Chapter</title>
-  <!-- Orbitron font for a futuristic look -->
-  <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700&display=swap" rel="stylesheet">
-  <style>
-    /* Reset and smooth scrolling */
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SRM OSI Student Chapter</title>
+    
+    <!-- Orbitron font for a futuristic look -->
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+      /* Reset and smooth scrolling */
     * {
-      margin: 0px;
-      padding: 0px;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
     /* Body: Optics and photonics background */
     body {
-      font-family: 'cinzil text-decoration', Times New Roman;
-      background: url('https://images.app.goo.gl/PV9twVvhueuUXiT89') no-repeat center center fixed;
+      font-family: 'Orbitron', sans-serif;
+      background: #000 url('https://source.unsplash.com/random/1920x1080/?optics') no-repeat center center fixed;
       background-size: cover;
       color: white;
       text-align: center;
       position: relative;
+      overflow-x: hidden;
     }
     /* Dark overlay for readability */
     body::before {
       content: "";
-      position: absolute;
+      position: fixed;
       top: 0; 
       left: 0;
       width: 100%; 
@@ -35,165 +41,225 @@
       z-index: -1;
     }
     /* Header with left logo, navigation, and right-side logo */
-    header {
-      background: rgba(0,0,0,0.8);
-      padding: 5px;
-      position: fixed;
-      width: 100%;
-      height: 16%;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-    }
-    /* Left Logo replaced as requested */
-    header a.logo {
-      margin-right: 50px;
-    }
-    header a.logo img {
-      height: 90px;
-      margin-right: 50px;
-    }
-    nav {
-      flex-grow: 1;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-    }
-    nav ul li {
-      margin: 0 10px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 20px;
-      transition: 0.3s;
-    }
-    nav ul li a:hover, nav ul li a.active {
-      color: #9AA6B2;
-    }
-    .header-right {
-      margin-left: auto;
-    }
-    .header-right img {
-      height: 125px;
-      margin-right: 100px;
-    }
+header {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Left Logo */
+header a.logo img {
+  height: 60px;
+  margin: 0;
+}
+
+/* Right-side logo centered */
+.header-right {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1; /* Allows logo to center */
+}
+
+.header-right img {
+  height: 60px;
+}
+
+/* Menu toggle button on the right side */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px; /* Keep aligned to the top */
+  right: 15px; /* Keep aligned to the right */
+}
+
+/* Nav Bar */
+nav {
+  flex-grow: 1;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #9AA6B2;
+}
+
+/* MOBILE VIEW FIXES */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Show menu button in mobile view */
+  }
+
+  header {
+    justify-content: space-between;
+  }
+
+  .header-right {
+    order: -1; /* Push logo to the center */
+    flex-grow: 0;
+    margin: auto;
+  }
+
+  /* Hide nav by default in mobile */
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%; /* Open below header */
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 0;
+  }
+
+  nav.active {
+    display: block; /* Show nav when active */
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
     /* Hero Section */
-    .hero {
-      height: 100vh;
+    .hero { 
       display: flex;
+      height: 100vh;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 150px;
+      padding: 20px;
+      margin-top: 80px;
     }
     .hero h1 {
-      font-family: 'algerian', sans-serif;
-      font-size: 60px;
+      font-size: clamp(32px, 5vw, 60px);
       color: #EEEEEE;
-      text-shadow: 6px 6px 8px #000;
+      text-shadow: 2px 2px 4px #000;
       font-weight: bold;
     }
     .hero p {
-      font-size: 24px;
+      font-size: clamp(18px, 3vw, 24px);
       margin-top: 10px;
-      color: #ffcc25;
-      text-shadow: 4px 4px 6px #000;
+      color: #2cb5b2;
+      text-shadow: 2px 2px 3px #000;
       font-weight: bold;
     }
     /* Section Styling */
     .section {
       min-height: 100vh;
-      padding: 100px 20px 50px;
-      width: 80%;
+      padding: 120px 20px 50px;
+      width: 90%;
+      max-width: 1200px;
       margin: 0 auto;
       text-align: center;
       font-size: 20px;
       color: #00ffcc;
       position: relative;
-      text-shadow: 6px 6px 8px #000;
-      font-weight: bold;
+      text-shadow: 2px 2px 4px #000;
     }
     .tile {
       background: rgba(0,0,0,0.6);
       border-radius: 10px;
       padding: 20px;
       margin: 20px auto;
-      max-width: 800px;
+      width: 100%;
     }
     .section h2 {
       margin-bottom: 20px;
-      color: #3AB4F2;
-      font-size: 36px;
-      text-shadow: 6px 6px 8px #000;
+      color: #3377ff;
+      font-size: clamp(24px, 4vw, 36px);
+      text-shadow: 2px 2px 4px #000;
       font-weight: bold;
     }
     .section p, .section ul {
-      color: #FFF2F2;
-      font-size: 20px;
+      color: #ffffff;
+      font-size: clamp(16px, 2vw, 20px);
       line-height: 1.6;
-      text-shadow: 6px 6px 8px #000;
-      font-weight: bold;
+      text-shadow: 1px 1px 3px #000;
+      font-weight: normal;
     }
     .section ul {
       margin: 20px auto;
       text-align: left;
-      max-width: 600px;
-      text-shadow: 6px 6px 8px #000;
-      font-weight: bold;
+      max-width: 800px;
+      padding-left: 20px;
     }
     .section ul li {
       margin-bottom: 10px;
     }
     /* Team Section */
     #team h3 {
-      margin: 10px 0;
-      font-size: 28px;
-      color: #F8F3D9;
-      text-shadow: 6px 6px 8px #000;
+      margin: 20px 0;
+      font-size: clamp(20px, 3vw, 25px);
+      color: #ffffff;
+      text-shadow: 2px 2px 4px #000;
       font-weight: bold;
     }
-    /* Faculty Advisors in a single row */
+    /* Faculty Advisors */
     .faculty-advisors {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 90px;
       margin-bottom: 40px;
-      text-shadow: 6px 6px 8px #000;
-      font-weight: bold;
     }
-    /* Board Members arranged 2 per row */
+    /* Board Members */
     .board-members {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 80px;
       justify-items: center;
     }
-    /* Team Member Tile (Bigger) */
+    /* Team Member Tile */
     .team-member {
-      width: 350px;
-      height: 400px;
+      width: 100%;
+      max-width: 350px;
+      height: 380px;
       background-size: cover;
       background-position: center;
       border-radius: 10px;
       position: relative;
       overflow: hidden;
       transition: transform 0.5s;
-      text-shadow: 6px 6px 8px #000;
-      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
     .team-member:hover {
-      transform: rotateY(10deg);
+      transform: translateY(-5px);
     }
     .team-member .overlay {
       position: absolute;
       bottom: 0;
       width: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.4);
       padding: 10px;
       text-align: center;
       white-space: normal;
@@ -202,48 +268,146 @@
     .team-member .overlay h3, 
     .team-member .overlay p {
       margin: 2px 0;
-      color: #A1E3F9;
+      color: #1bc6ff;
       font-weight: bold;
     }
-    /* Tiles for Projects, Achievements, Gallery, Membership, Newsletter, Contact Us */
-    .tiles-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+    /* Button styling */
+    .btn {
+      background: linear-gradient(135deg, #3AB4F2, #241a71);
+      color: white;
+      border: none;
+      padding: 9px 25px;
+      border-radius: 20px;
+      font-family: 'Times New Roman', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    .tile-item {
-      background: rgba(0,0,0,0.6);
-      border-radius: 10px;
-      padding: 40px;
-      width: 250px;
-      height: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s;
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
-    .tile-item:hover {
-      transform: scale(1.05);
+    /* Form styling */
+    input[type="email"] {
+      padding: 12px 20px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 25px;
+      font-family: 'Orbitron', sans-serif;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .tile-item h3 {
-      margin-bottom: 100px;
-      font-size: 35px;
-      color: #2D336B;
+    
+    /* Media queries for responsive design */
+    @media screen and (max-width: 992px) {
+      header {
+        padding: 10px 0;
+      }
+      nav ul {
+        justify-content: center;
+      }
+      .header-right img {
+        height: 60px;
+      }
+      .section {
+        width: 95%;
+      }
     }
-    .tile-item p {
-      font-size: 20px;
-      color: #2D336B;
+    
+    @media screen and (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      
+      header {
+        justify-content: space-between;
+      }
+      
+      nav {
+        flex-basis: 100%;
+        display: none; /* Hide by default on mobile */
+        transition: all 0.3s ease;
+      }
+      
+      nav.active {
+        display: block;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+      }
+      
+      nav ul li {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .header-right {
+        margin-left: 0;
+      }
+      
+      .header-right img {
+        height: 60px;
+        margin-right: 10px;
+      }
+      
+      .faculty-advisors, 
+      .board-members {
+        gap: 5px;
+      }
+      
+      .team-member {
+        height: 300px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      header a.logo img {
+        height: 40px;
+        margin: 5px 10px;
+      }
+      
+      .header-right img {
+        height: 40px;
+      }
+      
+      .hero {
+        padding: 10px;
+      }
+      
+      .section {
+        padding: 100px 15px 30px;
+      }
+      
+      .team-member {
+        height: 280px;
+      }
+      
+      input[type="email"] {
+        padding: 10px 15px;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <a class="logo" href="https://ibb.co/0j0qVPqx">
-      <img src="https://i.ibb.co/pB9WQRcm/cropped-image.png" alt="cropped-image">
+    <a class="logo" href="#">
+      <img src="osi.jpg" alt="SRM OSI Logo">
     </a>
-    <nav>
+    
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    
+    <nav id="mainNav">
       <ul>
         <li><a href="#home">HOME</a></li>
         <li><a href="#about">ABOUT US</a></li>
@@ -252,19 +416,20 @@
         <li><a href="#achievements">ACHIEVEMENTS</a></li>
         <li><a href="#gallery">GALLERY</a></li>
         <li><a href="#membership">MEMBERSHIP</a></li>
-        <li><a href="#newsletter">NEWSLETTER</a></li>
         <li><a href="#contactus">CONTACT US</a></li>
       </ul>
     </nav>
+    
     <!-- Header right element with provided image link -->
-    <a class="header-right" href="https://photos.app.goo.gl/j4gkTTfTf9b3nF2M8">
-      <img src="https://media-hosting.imagekit.io//ef957bd0e5b14c1e/WhatsApp_Image_2025-02-22_at_07.03.57_26e3312c-removebg-preview.png?Expires=1834796372&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=dciTBqc-4gCn2r2pgt1HjOnobzxW~nsOedpTG6ohOAjIMB9ia7W0xBGdrGFopbWFRBg-EaCFfNlFKAp7bg~Adjp9bSJmByNkiWYBUzBgk~0h2q~la0phs8fHZ~17Wi-beoOPE0IaoF6vH4tVmliOFcKNX4-SaGcRFs9m7fB09nbkwasINLqH-p960EV9floCR3L2~Ws6Z0Z2jHnuIBgyXR0gw8VrEhud7huPq82xHETvqRGDgKhI-qILPMC5tmYX2zDDFjBoDY-5y66bkEf95r3o~TTQ6ByU5iAF3Lk3jDKj8uh6tuDSRNIXxrYkIQhPcGCHc0H8EVILeG9JQDbkQw__" alt="Extra Header Image">
+    <a class="header-right" href="#">
+      <img src="LOGO.png" alt="OSI Logo">
     </a>
   </header>
   
   <!-- Home Section -->
   <section class="hero" id="home">
-    <h1>Welcome to SRM OSI Student Chapter</h1>
+    <h1>Welcome to</h1>
+    <h1>SRM OSI STUDENT CHAPTER</h1>
     <p>Explore the world of Optics and Photonics with us.</p>
   </section>
   
@@ -273,7 +438,8 @@
     <div class="tile">
       <h2>ABOUT SRM OSI STUDENT CHAPTER</h2>
       <p>The SRM OSI Student Chapter is a dynamic platform dedicated to fostering innovation, research, and collaboration in the field of optics and photonics. Established under the Optical Society of India (OSI) at SRM Institute of Science and Technology, Vadapalani, our chapter serves as a hub for students passionate about exploring cutting-edge advancements in optical sciences and engineering.</p>
-      <p><strong>OUR MISSION</strong></p>
+      <ul>
+      </ul><p><strong>OUR MISSION</strong></p>
       <ul>
         <li>Promote awareness and knowledge-sharing in optics, photonics, and laser technologies.</li>
         <li>Encourage student engagement in research, projects, and technical workshops.</li>
@@ -290,6 +456,7 @@
       <p><strong>JOIN US</strong></p>
       <p>If you are passionate about optics and photonics and want to be part of a community that thrives on innovation and knowledge-sharing, SRM OSI Student Chapter is the place for you! Together, we aim to push the boundaries of optical science and make a significant impact in the field.</p>
       <p>🚀 Connect. Innovate. Illuminate. 🚀</p>
+    <p>Join us in our mission to illuminate the world with knowledge and innovation!</p>
     </div>
   </section>
   
@@ -297,31 +464,32 @@
   <section class="section" id="team">
     <h2>TEAM MEMBERS</h2>
     <!-- Faculty Advisors in a single row -->
-    <h3>FACULTY ADVISORS</h3>
+  <section class="section" id="team">
+    <h2>OUR TEAM</h2>
+    <h3>Faculty Advisors</h3>
     <div class="faculty-advisors">
       <div class="team-member" style="background-image: url('https://i.ibb.co/3y3j5xVc/IMG-1861.jpg');">
         <div class="overlay">
-          <h3>Dr GLARET SUBIN P</h3>
-          <p>ADVISORY FACULTY</p>
+          <h3>Dr.GLARET SUBIN P</h3>
         </div>
       </div>
       <div class="team-member" style="background-image: url('https://i.ibb.co/3y3j5xVc/IMG-1861.jpg');">
         <div class="overlay">
-          <h3>Dr SANJAY KUMAR</h3>
-          <p>ADVISORY FACULTY</p>
+          <h3>Dr. SANJAY KUMAR</h3>
         </div>
       </div>
     </div>
-    <!-- Board Members arranged 2 per row -->
+  </section>
+    <!-- Board Members arranged responsively -->
     <h3>Board Members</h3>
     <div class="board-members">
-      <div class="team-member" style="background-image: url('https://i.ibb.co/3y3j5xVc/IMG-1861.jpg');">
+      <div class="team-member" style="background-image: url('https://via.placeholder.com/300x350?text=President');">
         <div class="overlay">
           <h3>YESHVANTH R</h3>
           <p>PRESIDENT</p>
         </div>
       </div>
-      <div class="team-member" style="background-image: url('https://i.ibb.co/3y3j5xVc/IMG-1861.jpg');">
+      <div class="team-member" style="background-image: url('https://via.placeholder.com/300x350?text=Vice+President');">
         <div class="overlay">
           <h3>HARISH VENGATESHWER R</h3>
           <p>VICE PRESIDENT</p>
@@ -438,70 +606,74 @@
     </div>
   </section>
   
-  <!-- Projects Tile -->
+  <!-- Projects Section -->
   <section class="section" id="projects">
     <div class="tile">
-      <h2>PROJECTS</h2>
-      <p>Our projects tile goes here. Details about projects will be updated soon.</p>
+      <h2>OUR PROJECTS</h2>
+      <p>We work on cutting-edge projects in the field of optics and photonics, including:</p>
+      <ul>
+        <li>Laser-based Optical Communication Systems</li>
+        <li>Holography and 3D Imaging</li>
+        <li>Quantum Optics and Photonic Computing</li>
+      </ul>
     </div>
   </section>
   
-  <!-- Achievements Tile -->
+  <!-- Achievements Section -->
   <section class="section" id="achievements">
     <div class="tile">
-      <h2>ACHIEVEMENTS</h2>
-      <p>Our achievements tile goes here. Details about achievements will be updated soon.</p>
+      <h2>OUR ACHIEVEMENTS</h2>
+      <p>We take pride in our accomplishments, including:</p>
+      <ul>
+        <li>Winners of National Optics Challenge 2024</li>
+        <li>Published research in leading optics journals</li>
+      </ul>
     </div>
   </section>
   
-  <!-- Gallery Tile -->
+  <!-- Gallery Section -->
   <section class="section" id="gallery">
     <div class="tile">
       <h2>GALLERY</h2>
-      <p>Our gallery tile goes here. Images and media will be updated soon.</p>
+      <p>A glimpse into our events and activities:</p>
+      <img src="https://via.placeholder.com/800x400?text=Event+Photo" alt="Event Photo" width="100%">
     </div>
   </section>
   
-  <!-- Membership Tile -->
+  <!-- Membership Section -->
   <section class="section" id="membership">
     <div class="tile">
       <h2>MEMBERSHIP</h2>
-      <p>Join us as a member to be part of an innovative community in optics and photonics.</p>
-      <button class="btn" onclick="window.location.href='https://www.osiindia.org/v2/individual.php'">Click Now</button>
+      <p>Join our community of passionate students and researchers!</p>
+      <button class="btn">Become a Member</button>
     </div>
   </section>
   
-  <!-- Newsletter Tile with Formspree integration -->
-  <section class="section" id="newsletter">
-    <div class="tile">
-      <h2>NEWSLETTER</h2>
-      <p>Subscribe to our newsletter for the latest updates.</p>
-      <form action="https://formspree.io/f/your_form_id" method="POST">
-        <input type="email" name="email" placeholder="Enter your email" required style="padding:10px; width:80%; margin-bottom:50px; border:none; border-radius:25px;">
-        <br>
-        <button type="submit" class="btn">Subscribe</button>
-      </form>
-    </div>
-  </section>
-  
-  <!-- Contact Us Tile -->
+  <!-- Contact Us Section -->
   <section class="section" id="contactus">
     <div class="tile">
       <h2>CONTACT US</h2>
-      <p>Email: srmosivdp@gmail.com</p>
-      <p>Phone: +91-9566859313</p>
-      <p>Address: SRM Institute of Science and Technology, Vadapalani
-      
-C – Block, No.1, 100 Feet Road,
-Jawaharlal Nehru Salai,
-Adjacent to SIMS Hospital,
-Vadapalani,
-Chennai – 600026
-Tamilnadu
-
-</p>
+      <p>Email: <a href="mailto:contact@srmosi.com">srmosivdp@gmail.com</a></p>
+      <p>Follow us on social media:</p>
+<a href="https://www.linkedin.com" target="_blank" style="color: white; font-size: 28px; margin-right: 15px; text-decoration: none;">
+  <i class="fab fa-linkedin"></i>
+</a>
+<a href="https://www.instagram.com" target="_blank" style="color: white; font-size: 28px; margin-left: 15px; text-decoration: none;">
+  <i class="fab fa-instagram"></i>
+</a>
     </div>
   </section>
   
+  <!-- Footer -->
+  <footer style="padding: 20px; background: rgba(0, 0, 0, 0.8); text-align: center; color: white;">
+    <p>&copy; 2025 SRM OSI Student Chapter. All rights reserved.</p>
+  </footer>
+  
+  <!-- JavaScript for Menu Toggle -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
